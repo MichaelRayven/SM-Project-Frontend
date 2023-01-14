@@ -1,0 +1,11 @@
+@use '../../styles/util' as u;
+
+.button {
+    background-color: #2977FF;
+    padding: u.rem(12);
+    border-radius: u.rem(8);
+
+    font-weight: 500;
+    font-size: u.rem(18);
+    font-family: u.$font-primary;
+}
