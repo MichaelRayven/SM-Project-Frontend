@@ -1,0 +1,18 @@
+@use "sass:math";
+
+// Divide $pixel by 16 to return rems
+@function rem($pixel) {
+  @if math.is-unitless($pixel) {
+    @return math.div($pixel, 16) + rem;
+  } @else {
+    @error "Error: Function rem() doesn\'t accept units; only numbers";
+  }
+}
+
+@function hslv($var) {
+  @return hsl(var(--#{$var}));
+}
+
+@function hslav($var, $alpha) {
+  @return hsla(var(--#{$var}), $alpha);
+}
