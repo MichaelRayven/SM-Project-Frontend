@@ -1,10 +1,18 @@
+@use "../util" as u;
+
+$colors : (
+    "accent": #2977FF,
+    "neutural": #FFFFFF,
+    "error": #B71C1C,
+    "success": #18AC39,
+    "text": #000000,
+    "text-secondary": #616161,
+    "border": #BEBEBE,
+    "background": #ECEFF1
+);
+
 :root {
-    --color-accent: #2977FF;
-    --color-neutural: #FFFFFF;
-    --color-error: #B71C1C;
-    --color-success: #18AC39;
-    --color-text: #000000;
-    --color-text-secondary: #616161;
-    --color-border: #BEBEBE;
-    --color-background: #ECEFF1;
+    @each $key, $value in $colors {
+        --color-#{$key}: #{u.HEXToRGB($value)};
+    }
 }

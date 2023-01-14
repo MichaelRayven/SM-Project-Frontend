@@ -1,4 +1,6 @@
 @use "sass:math";
+@use "sass:color";
+@use "sass:string";
 
 // Divide $pixel by 16 to return rems
 @function rem($pixel) {
@@ -9,10 +11,14 @@
   }
 }
 
-@function hslv($var) {
-  @return hsl(var(--#{$var}));
+@function HEXToRGB($hex) {
+  @return color.red($hex), color.green($hex), color.blue($hex);
 }
 
-@function hslav($var, $alpha) {
-  @return hsla(var(--#{$var}), $alpha);
+@function cl($name) {
+  @return rgb(var(--color-#{string.unquote($name)}));
+}
+
+@function cla($name, $alpha) {
+  @return rgba(var(--color-#{string.unquote($name)}), $alpha);
 }
