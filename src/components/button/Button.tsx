@@ -1,16 +1,12 @@
-import React from 'react'
-import "./Button.scss";
+import React from "react"
+import "./Button.scss"
 
 type Props = {
-    text: string
+  text: string
 }
 
 const Button = (props: Props) => {
-  return (
-    <button className='button'>
-        {props.text}
-    </button>
-  )
+  return <button className="button">{props.text}</button>
 }
 
 export default Button
