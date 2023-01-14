@@ -1,18 +1,48 @@
+@use "sass:color";
 @use "../util" as u;
 
-$colors : (
+$colors-light-theme : (
     "accent": #2977FF,
     "neutural": #FFFFFF,
     "error": #B71C1C,
     "success": #18AC39,
     "text": #000000,
     "text-secondary": #616161,
-    "border": #BEBEBE,
+    "border": #BDBDBD,
     "background": #ECEFF1
 );
 
-:root {
-    @each $key, $value in $colors {
-        --color-#{$key}: #{u.HEXToRGB($value)};
+$colors-dark-theme : (
+    "accent": #2E65EC,
+    "neutural": #424242,
+    "error": #B71C1C,
+    "success": #18AC39,
+    "text": #FFFFFF,
+    "text-secondary": #BDBDBD,
+    "border": #BEBEBE,
+    "background": #212121
+);
+
+@media (prefers-color-scheme: light) {
+    :root {
+        @each $key, $value in $colors-light-theme {
+            --color-#{$key}: #{u.HEXToRGB($value)};
+            --color-#{$key}-dark: #{u.HEXToRGB(color.scale($value, $lightness: -5%))};
+            --color-#{$key}-darkest: #{u.HEXToRGB(color.scale($value, $lightness: -15%))};
+            --color-#{$key}-light: #{u.HEXToRGB(color.scale($value, $lightness: 15%))};
+            --color-#{$key}-lightest: #{u.HEXToRGB(color.scale($value, $lightness: 30%))};
+        }
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        @each $key, $value in $colors-dark-theme {
+            --color-#{$key}: #{u.HEXToRGB($value)};
+            --color-#{$key}-dark: #{u.HEXToRGB(color.scale($value, $lightness: -5%))};
+            --color-#{$key}-darkest: #{u.HEXToRGB(color.scale($value, $lightness: -15%))};
+            --color-#{$key}-light: #{u.HEXToRGB(color.scale($value, $lightness: 15%))};
+            --color-#{$key}-lightest: #{u.HEXToRGB(color.scale($value, $lightness: 30%))};
+        }
     }
 }
