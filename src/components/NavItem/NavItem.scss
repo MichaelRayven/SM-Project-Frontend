@@ -1,0 +1,30 @@
+@use "../../styles/util" as u;
+
+.nav__link {
+  @include u.subtitle-text;
+  $link: #{&};
+
+  color: u.cl(text);
+
+  &_active {
+    @extend #{$link};
+
+    position: relative;
+
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+
+      margin: u.rem(3);
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+
+      width: 90%;
+      height: u.rem(3);
+
+      background-color: u.cl(accent);
+    }
+  }
+}
