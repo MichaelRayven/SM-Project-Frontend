@@ -1,0 +1,11 @@
+@use "../../styles/util" as u;
+
+.dropdown {
+  position: absolute;
+  margin-top: u.rem(8);
+  width: 100%;
+  top: 100%;
+
+  border-radius: u.rem(8);
+  overflow: hidden;
+}
