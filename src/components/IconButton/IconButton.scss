@@ -1,0 +1,24 @@
+@use "../../styles/util" as u;
+
+.button_icon {
+  @include u.h3-text;
+
+  display: flex;
+  align-items: center;
+
+  aspect-ratio: 1/1;
+
+  background: none;
+  border-radius: 50%;
+
+  color: u.cl(text);
+  padding: none;
+
+  &:hover {
+    background-color: u.cla(neutural, 0.5);
+  }
+
+  &:active {
+    background-color: u.cla(neutural-darkest, 0.5);
+  }
+}
