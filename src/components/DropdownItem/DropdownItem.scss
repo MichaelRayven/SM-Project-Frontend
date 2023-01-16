@@ -1,0 +1,20 @@
+@use "../../styles/util" as u;
+
+.dropdown__item {
+  display: flex;
+  align-items: center;
+
+  cursor: pointer;
+  min-width: max-content;
+  background-color: u.cl(neutural);
+  padding: u.rem(12);
+  column-gap: u.rem(12);
+
+  &:hover {
+    background-color: u.cl(neutural-dark);
+  }
+
+  &:active {
+    background-color: u.cl(neutural-darkest);
+  }
+}
