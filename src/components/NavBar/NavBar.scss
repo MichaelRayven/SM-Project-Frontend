@@ -1,8 +1,6 @@
 @use "../../styles/util" as u;
 
 .nav {
-  margin-bottom: u.rem(20);
-
   &__list {
     display: flex;
     gap: u.rem(12);
