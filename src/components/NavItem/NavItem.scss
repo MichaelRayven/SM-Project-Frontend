@@ -23,8 +23,7 @@
 
     background-color: none;
 
-    transition: background 0.2s linear;
-    transition: width 0.2s ease-out;
+    transition: width 0.2s ease-out, background 0.1s ease-in-out;
   }
 
   &_active {
