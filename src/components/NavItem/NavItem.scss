@@ -4,27 +4,47 @@
   @include u.subtitle-text;
   $link: #{&};
 
+  position: relative;
   color: u.cl(text);
+  cursor: pointer;
+
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+
+    margin-top: u.rem(3);
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 85%;
+    height: u.rem(3);
+
+    background-color: none;
+
+    transition: background 0.2s linear;
+    transition: width 0.2s ease-out;
+  }
 
   &_active {
     @extend #{$link};
 
-    position: relative;
-
     &::after {
-      content: "";
-      display: block;
-      position: absolute;
-
-      margin: u.rem(3);
-      top: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-
-      width: 90%;
-      height: u.rem(3);
-
       background-color: u.cl(accent);
+    }
+  }
+
+  &:hover {
+    &::after {
+      background-color: u.cl(accent);
+      width: 100%;
+    }
+  }
+
+  &:active {
+    &::after {
+      background-color: u.cl(accent-darkest);
     }
   }
 }
