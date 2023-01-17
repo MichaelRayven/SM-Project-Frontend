@@ -5,7 +5,7 @@
 
   &__inner {
     display: flex;
-    align-items: center;
+    align-items: stretch;
 
     border-radius: u.rem(8);
     overflow: hidden;
@@ -16,7 +16,8 @@
   &__input {
     @include u.body2-text;
 
-    padding: u.rem(12);
+    padding-block: u.rem(12);
+    padding-left: u.rem(12);
     color: u.cl(text);
 
     background: none;
@@ -28,7 +29,7 @@
     position: relative;
     color: u.cl(accent);
 
-    align-self: stretch;
+    padding: u.rem(6);
 
     &::before {
       content: "";
@@ -44,6 +45,6 @@
   }
 
   &__reset {
-    align-self: stretch;
+    padding: u.rem(6);
   }
 }
