@@ -1,0 +1,28 @@
+@use "../../styles/util" as u;
+
+.header {
+  width: 100%;
+  height: u.rem(100);
+  background-color: u.cl(neutural);
+
+  &__inner {
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    column-gap: u.rem(16);
+  }
+
+  &__navbar {
+    margin-left: u.rem(16);
+    margin-right: auto;
+  }
+}
+
+.logo {
+  display: flex;
+
+  &__text {
+    @include u.h1-text;
+  }
+}
