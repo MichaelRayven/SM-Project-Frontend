@@ -8,4 +8,6 @@
 
   border-radius: u.rem(8);
   overflow: hidden;
+
+  border: u.rem(1) solid u.cl(border);
 }
