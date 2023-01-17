@@ -5,20 +5,25 @@
 
   display: flex;
   align-items: center;
+  justify-content: center;
 
   aspect-ratio: 1/1;
 
   background: none;
-  border-radius: 50%;
 
   color: u.cl(text);
-  padding: none;
+  padding: 0;
 
-  &:hover {
-    background-color: u.cla(neutural, 0.5);
-  }
+  & > .icon {
+    border-radius: 50%;
+    padding: u.rem(6);
 
-  &:active {
-    background-color: u.cla(neutural-darkest, 0.5);
+    &:hover {
+      background-color: u.cla(neutural-dark, 0.5);
+    }
+
+    &:active {
+      background-color: u.cla(neutural-darkest, 0.5);
+    }
   }
 }
