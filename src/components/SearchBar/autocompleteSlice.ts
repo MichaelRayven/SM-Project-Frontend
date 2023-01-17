@@ -34,20 +34,6 @@ export const fetchAutocomplete = createAsyncThunk<AutocompleteResult[]>(
   }
 )
 
-// export const latest = (fn) => {
-//   let previous = false;
-//   return (signal, result, time) => {
-//     if (previous) {
-//       previous.abort();
-//     }
-//     previous = signal;
-//     return fn(signal, result, time).finally(() => {
-//       //reset previous
-//       previous = false;
-//     });
-//   };
-// };
-
 export const autocompleteSlice = createSlice({
   name: "autocomplete",
   initialState,
@@ -78,7 +64,6 @@ export const autocompleteSlice = createSlice({
 
 export const { setAutocompleteResults } = autocompleteSlice.actions
 
-export const selectAutocomplete = (state: RootState) =>
-  state.autocomplete
+export const selectAutocomplete = (state: RootState) => state.autocomplete
 
 export default autocompleteSlice.reducer

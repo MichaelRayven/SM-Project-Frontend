@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit"
-import searchSlice from "../components/Search/autocompleteSlice"
+import searchSlice from "../components/SearchBar/autocompleteSlice"
 
 export const store = configureStore({
   reducer: {
