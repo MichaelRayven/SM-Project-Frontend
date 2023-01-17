@@ -1,0 +1,8 @@
+@use "../../styles/util" as u;
+
+.nav {
+  &__list {
+    display: flex;
+    gap: u.rem(12);
+  }
+}

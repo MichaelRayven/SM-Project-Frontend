@@ -1,0 +1,24 @@
+@use "../../styles/util" as u;
+
+.button {
+  @include u.h3-text;
+
+  display: flex;
+  align-items: center;
+  column-gap: u.rem(8);
+
+  text-transform: capitalize;
+  background-color: u.cl(accent);
+  padding: u.rem(12);
+  border-radius: u.rem(8);
+  color: u.cl(text-on-accent);
+
+  &:hover {
+    background-color: u.cl(accent-dark);
+  }
+
+  &:active {
+    background-color: u.cl(accent-darkest);
+    outline: none;
+  }
+}

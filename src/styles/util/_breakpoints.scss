@@ -1,0 +1,27 @@
+@use "functions" as f;
+
+// Ems are used to respond to global text size changes
+// Like text size being changed in device or browser settings
+$breakpoints-up: (
+  "medium": f.em(480),
+  "large": f.em(768),
+  "xlarge": f.em(1024),
+);
+
+$breakpoints-down: (
+  "small": f.em(479.98),
+  "medium": f.em(767.98),
+  "large": f.em(1023.98),
+);
+
+@mixin breakpoint-up($size) {
+  @media (min-width: map-get($breakpoints-up, $size)) {
+    @content;
+  }
+}
+
+@mixin breakpoint-down($size) {
+  @media (max-width: map-get($breakpoints-down, $size)) {
+    @content;
+  }
+}

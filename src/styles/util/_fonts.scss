@@ -1,0 +1,56 @@
+@use "functions" as f;
+
+$font-primary: "Poppins", sans-serif;
+$font-secondary: "Open Sans", sans-serif;
+
+// Text style for user generated content
+@mixin body1-text {
+  font-family: $font-secondary;
+  font-weight: 400;
+  font-size: f.rem(16);
+  line-height: 110%;
+}
+
+// Text style for plain text in layouts
+@mixin body2-text {
+  font-family: $font-primary;
+  font-weight: 400;
+  font-size: f.rem(16);
+  line-height: 110%;
+}
+
+// Text style for website logo
+@mixin h1-text {
+  font-family: $font-primary;
+  font-weight: 700;
+  font-size: f.rem(32);
+  line-height: 150%;
+}
+
+// Text style for category/section headers
+@mixin h2-text {
+  @include h1-text;
+  font-size: f.rem(20);
+}
+
+// Text style for article titles, buttons
+@mixin h3-text {
+  font-family: $font-primary;
+  font-weight: 500;
+  font-size: f.rem(18);
+  line-height: 150%;
+}
+
+// Text style for usernames
+@mixin h4-text {
+  @include h3-text;
+  font-size: f.rem(16);
+}
+
+// Text style for navigation links
+@mixin subtitle-text {
+  font-family: $font-primary;
+  font-weight: 400;
+  font-size: f.rem(20);
+  line-height: 150%;
+} 

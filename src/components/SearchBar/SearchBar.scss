@@ -1,0 +1,50 @@
+@use "../../styles/util" as u;
+
+.search {
+  position: relative;
+
+  &__inner {
+    display: flex;
+    align-items: stretch;
+
+    border-radius: u.rem(8);
+    overflow: hidden;
+
+    background-color: u.cl(background);
+  }
+
+  &__input {
+    @include u.body2-text;
+
+    padding-block: u.rem(12);
+    padding-left: u.rem(12);
+    color: u.cl(text);
+
+    background: none;
+    outline: none;
+    border: none;
+  }
+
+  &__submit {
+    position: relative;
+    color: u.cl(accent);
+
+    padding: u.rem(6);
+
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+
+      right: 100%;
+      height: 100%;
+      width: u.rem(1);
+
+      background-color: u.cl(border);
+    }
+  }
+
+  &__reset {
+    padding: u.rem(6);
+  }
+}

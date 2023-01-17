@@ -1,0 +1,33 @@
+@use "sass:math";
+@use "sass:color";
+@use "sass:string";
+
+// Divide $pixel by 16 to return rems
+@function rem($pixel) {
+  @if math.is-unitless($pixel) {
+    @return math.div($pixel, 16) + rem;
+  } @else {
+    @error "Error: Function rem() doesn\'t accept units; only numbers";
+  }
+}
+
+// Divide $pixel by 16 to return ems
+@function em($pixel) {
+  @if math.is-unitless($pixel) {
+    @return math.div($pixel, 16) + em;
+  } @else {
+    @error "Error: Function rem() doesn\'t accept units; only numbers";
+  }
+}
+
+@function HEXToRGB($hex) {
+  @return color.red($hex), color.green($hex), color.blue($hex);
+}
+
+@function cl($name) {
+  @return rgb(var(--color-#{string.unquote($name)}));
+}
+
+@function cla($name, $alpha) {
+  @return rgba(var(--color-#{string.unquote($name)}), $alpha);
+}
