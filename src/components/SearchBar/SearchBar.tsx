@@ -48,7 +48,7 @@ export const SearchBar = (props: Props) => {
           style={{ visibility: text ? "visible" : "hidden" }}
           onClick={clearInput}
         ></IconButton>
-        <IconButton className="search__submit" name={"search"}></IconButton>
+        <IconButton className="search__submit" name={"search"} ></IconButton>
       </div>
       {!loading && !error && results.length !== 0 && (
         <Dropdown

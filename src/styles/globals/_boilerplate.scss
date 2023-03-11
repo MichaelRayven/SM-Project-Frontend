@@ -21,7 +21,11 @@
 // Font-size defaults to 16px
 html {
   box-sizing: border-box;
-  font-size: 100%;
+  font-size: 80%;
+
+  @include u.breakpoint-down(large) {
+    font-size: 60%;
+  }
 }
 
 body {
@@ -40,6 +44,7 @@ a,
 a:visited,
 a:active {
   text-decoration: none;
+  color: inherit;
 }
 
 ul,

@@ -4,5 +4,9 @@
   &__list {
     display: flex;
     gap: u.rem(12);
+
+    @include u.breakpoint-down(medium) {
+      flex-direction: column;
+    }
   }
 }

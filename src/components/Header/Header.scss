@@ -2,8 +2,29 @@
 
 .header {
   width: 100%;
-  height: u.rem(100);
+  min-height: u.rem(100);
   background-color: u.cl(neutural);
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+
+    @include u.breakpoint-down(medium) {
+      width: 100%;
+    }
+  }
+
+  &__menu {
+    display: none;
+
+    @include u.breakpoint-down(medium) {
+      display: block;
+    }
+  }
+
+  @include u.breakpoint-down(medium) {
+    padding: u.rem(10);
+  }
 
   &__inner {
     height: 100%;
@@ -11,11 +32,41 @@
     display: flex;
     align-items: center;
     column-gap: u.rem(16);
+
+    @include u.breakpoint-down(medium) {
+      flex-direction: column;
+      align-items: start;
+    }
+  }
+
+  &__dropdown {
+    transition: max-height 0.25s ease-in;
+
+    display: flex;
+    align-items: center;
+    column-gap: u.rem(16);
+
+    @include u.breakpoint-down(medium) {
+      max-height: 0;
+      overflow-y: hidden;
+
+      flex-direction: column;
+      align-items: start;
+      row-gap: u.rem(16);
+    }
+
+    &_open {
+      max-height: 500px;
+    }
   }
 
   &__navbar {
     margin-left: u.rem(16);
     margin-right: auto;
+
+    @include u.breakpoint-down(medium) {
+      margin: 0;
+    }
   }
 }
 
