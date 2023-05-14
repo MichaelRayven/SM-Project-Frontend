@@ -5,6 +5,7 @@
   margin-inline: auto;
 
   @include u.breakpoint-up(large) {
-    max-width: u.rem(1200);
+    max-width: u.rem(1400);
+    padding-inline: u.rem(32);
   }
 }

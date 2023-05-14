@@ -1,0 +1,73 @@
+@use "../../styles/util" as u;
+
+.highlight {
+  &_inversion {
+    background: rgb(var(--color-text));
+    color: rgb(var(--color-neutural));
+    padding: u.rem(4) u.rem(16);
+    border-radius: u.rem(999);
+  }
+}
+
+.signup {
+  width: max-content;
+  margin-top: u.rem(160);
+
+  @include u.breakpoint-down(medium) {
+    margin-top: u.rem(20);
+    width: auto;
+  }
+
+  &__top, &__bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: u.rem(16);
+
+    background: rgb(var(--color-neutural));
+    padding: u.rem(24);
+    border-radius: u.rem(8);
+  }
+
+  &__top {
+    padding-inline: u.rem(150);
+
+    @include u.breakpoint-down(small) {
+      padding-inline: u.rem(24); 
+    }
+  }
+
+  &__bottom {
+    margin-top: u.rem(24);
+    padding-inline: u.rem(48);
+    text-align: center;
+  }
+
+  &__socials {
+    display: flex;
+    column-gap: u.rem(12);
+  }
+
+  &__text {
+    font-size: u.rem(22);
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    row-gap: u.rem(16);
+    width: 100%;
+  }
+
+  &__link {
+    color: rgb(var(--color-accent)) !important;
+
+    &:hover {
+      color: rgb(var(--color-accent-dark)) !important;
+    }
+
+    &:active {
+      color: rgb(var(--color-accent-darker)) !important;
+    }
+  }
+}

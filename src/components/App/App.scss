@@ -1,1 +1,30 @@
+@use "../../styles/util" as u;
 
+.main {
+  flex: 1 1 auto;
+
+  & > * {
+    height: 100%;
+  }
+}
+
+.layout {
+  display: contents;
+}
+
+.statistics {
+  display: flex;
+  column-gap: u.rem(16);
+  @include u.body2-text;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  column-gap: u.rem(8);
+}
+
+.icon {
+  display: block;
+  font-size: u.rem(32);
+}

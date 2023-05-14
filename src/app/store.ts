@@ -1,10 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit"
-import searchSlice from "../components/SearchBar/autocompleteSlice"
+import searchSlice from "../components/Search/SearchSlice"
 
 export const store = configureStore({
-  reducer: {
-    autocomplete: searchSlice,
-  },
+	reducer: {
+		"searchSlice": searchSlice
+	// 	[autocompleteApi.reducerPath]: autocompleteApi.reducer,
+	},
+	// middleware: (getDefaultMiddleware) =>
+	// 	getDefaultMiddleware().concat(autocompleteApi.middleware),
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

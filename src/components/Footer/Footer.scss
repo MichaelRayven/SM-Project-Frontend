@@ -1,0 +1,64 @@
+@use "../../styles/util" as u;
+
+.footer {
+  padding-block: u.rem(24);
+  padding-inline: u.rem(16);
+  background: rgb(var(--color-neutural));
+
+  &__inner {
+    display: flex;
+    column-gap: u.rem(24);
+
+    @include u.breakpoint-down(medium) {
+      display: grid;
+      grid-template-areas: 
+      "logo accounts threads"
+      "logo contact socials";
+      column-gap: u.rem(24);
+      row-gap: u.rem(16);
+    }
+
+    @include u.breakpoint-down(small) {
+      grid-template-areas: 
+      "logo logo"
+      "accounts threads"
+      "contact socials";
+    }
+  }
+
+  &__logo {
+    grid-area: logo;
+    align-self: center;
+    flex-direction: column;
+    margin-right: u.rem(100);
+
+    & .logo__img {
+      width: 100%;
+    }
+
+    & .logo__text {
+      @include u.h2-text;
+    }
+
+    @include u.breakpoint-down(small) {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  &__col {
+    flex: 1 0 0;
+  }
+
+  &__heading {
+    padding-bottom: u.rem(4);
+    margin-bottom: u.rem(4);
+    border-bottom: u.rem(1) solid rgb(var(--color-border));
+  }
+
+  &__link {
+    display: flex;
+    margin-bottom: u.rem(4);
+    @include u.nav-text;
+  }
+}

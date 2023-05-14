@@ -1,0 +1,46 @@
+@use "../../styles/util" as u;
+
+.error-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    column-gap: u.rem(16);
+    margin-bottom: u.rem(24);
+  }
+
+  &__icon {
+    font-size: u.rem(80);
+    color: rgb(var(--color-error));
+
+    font-variation-settings:
+      'FILL' 0,
+      'wght' 700;
+  }
+
+  &__text {
+    font-weight: 500;
+    margin-bottom: u.rem(48);
+  }
+
+  &__link {
+    color: rgb(var(--color-accent)) !important;
+
+    &:hover {
+      color: rgb(var(--color-accent-dark)) !important;
+    }
+
+    &:active {
+      color: rgb(var(--color-accent-darker)) !important;
+    }
+  }
+
+  &__button {
+    font-weight: 700;
+    padding: u.rem(16) u.rem(32);
+  }
+}

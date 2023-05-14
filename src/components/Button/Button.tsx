@@ -1,17 +1,17 @@
-import React from "react"
 import "./Button.scss"
 
 type Props = {
-  children: React.ReactNode
-  className?: string
-  style?: React.CSSProperties
-  onClick?: React.MouseEventHandler<HTMLButtonElement>
+	text: string,
+	icon?: string,
+	className?: string,
+	onClick?: () => void
 }
 
-export const Button = ({ children, className = "", onClick, style }: Props) => {
-  return (
-    <button onClick={onClick} className={`button ${className}`} style={style}>
-      {children}
-    </button>
-  )
+export const Button = ({text, icon, className, onClick}: Props) => {
+	return (
+		<button className={`button ${className || ""}`} type="button" onClick={onClick}>
+			{icon && <span className="material-symbols-rounded icon">{icon}</span>}
+			{text}
+		</button>
+	)
 }
