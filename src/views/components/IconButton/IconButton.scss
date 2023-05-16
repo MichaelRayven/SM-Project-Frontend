@@ -1,0 +1,20 @@
+@use "@/styles/util" as u;
+
+.icon-button  {
+  padding: u.rem(4);
+  background: none;
+
+  &__icon {
+    padding: u.rem(8);
+    border-radius: u.rem(999);
+    transition: background .2s ease-out;
+
+    &:hover {
+      background: rgb(var(--color-neutural-dark));
+    }
+
+    &:active {
+      background: rgb(var(--color-neutural-darker));
+    }
+  }
+}

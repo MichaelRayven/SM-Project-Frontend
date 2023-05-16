@@ -1,0 +1,20 @@
+@use "@/styles/util" as u;
+
+.button {
+  display: flex;
+  align-items: center;
+  column-gap: u.rem(12);
+  padding: u.rem(12);
+  border-radius: u.rem(8);
+  background: rgb(var(--color-accent));
+  transition: background 0.2s ease-out;
+  @include u.button-text;
+
+  &:hover {
+    background: rgb(var(--color-accent-dark));
+  }
+
+  &:active {
+    background: rgb(var(--color-accent-darker));
+  }
+}

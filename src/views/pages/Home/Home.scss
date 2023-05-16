@@ -1,0 +1,22 @@
+@use "@/styles/util" as u;
+
+.home {
+  margin-block: u.rem(32);
+
+  display: grid;
+  grid-template-columns: 5fr 3fr;
+  grid-template-rows: 1;
+  column-gap: u.rem(32);
+
+  @include u.breakpoint-down(medium) {
+    display: block;
+  }
+
+  &__content > * {
+    margin-bottom: u.rem(32);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

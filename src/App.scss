@@ -1,0 +1,18 @@
+@use "@/styles/util" as u;
+
+.statistics {
+  display: flex;
+  column-gap: u.rem(16);
+  @include u.body2-text;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  column-gap: u.rem(8);
+}
+
+.icon {
+  display: block;
+  font-size: u.rem(32);
+}

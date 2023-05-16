@@ -1,0 +1,20 @@
+@use "@/styles/util" as u;
+
+.search-page {
+  margin-top: u.rem(32);
+  
+
+  @include u.breakpoint-down(small) {
+    margin-inline: u.rem(12);
+  }
+
+  &__search {
+    background: rgb(var(--color-neutural));
+    box-shadow: u.rem(4) u.rem(4) u.rem(8) rgba(var(--color-text), .1);
+
+    & > .search__dropdown {
+      border: none;
+      box-shadow: u.rem(4) u.rem(4) u.rem(8) rgba(var(--color-text), .1);
+    }
+  }
+}

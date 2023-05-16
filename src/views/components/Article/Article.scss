@@ -1,0 +1,41 @@
+@use "@/styles/util" as u;
+
+.article {
+  background: rgb(var(--color-neutural));
+  border-radius: u.rem(8);
+  padding: u.rem(24);
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    column-gap: u.rem(8);
+    margin-bottom: u.rem(8);
+  }
+
+  &__author {
+    @include u.h6-text;
+  }
+
+  &__date {
+    @include u.body2-text;
+    color: rgb(var(--color-text-secondary));
+  }
+
+  &__heading {
+    margin-bottom: u.rem(12);
+  }
+
+  &__gallery {
+    width: 100%;
+    margin-bottom: u.rem(24);
+  }
+
+  &__excerpt {
+    margin-bottom: u.rem(24);
+    @include u.body1-text;
+  }
+
+  &__read-full {
+    margin-bottom: u.rem(16);
+  }
+}
