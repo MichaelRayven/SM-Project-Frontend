@@ -1,73 +1,100 @@
-import { useEffect, useRef, useState } from "react"
+import { useId, useState } from "react"
 import "./Input.scss"
 
 type Props = {
-	className?: string
+  className?: string
+  style?: React.CSSProperties
+  defaultValue?: string
+	placeholder?: string
 	helperText?: string
 	label?: string
-	placeholder?: string
-	required?: boolean
 	type?: string
-	initialValue?: string
-	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
-	min?: number
-	max?: number
-	trailingContent?: string | JSX.Element | JSX.Element[]
-	leadingContent?: string | JSX.Element | JSX.Element[]
+  endAdornment?: React.ReactNode
+  startAdornment?: React.ReactNode
+	error?: boolean
+	focus?: boolean
+	value?: string | number
+	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-export const Input = ({ 
-	helperText, 
+export const Input = ({
+	className, 
+	style,
 	label,
-	placeholder, 
-	required, 
+	placeholder,
 	type = "text",
-	className,
-	initialValue = "",
-	onChange = () => {},
-	min,
-	max,
-	trailingContent,
-	leadingContent
+	defaultValue = "",
+	startAdornment,
+	endAdornment,
+	helperText,
+	error,
+	focus,
+	value: outerValue,
+	onChange
 }: Props) => {
-	const [value, setValue] = useState(initialValue)
-	const [isValid, setIsValid] = useState(true)
-	const inputRef = useRef<HTMLInputElement>(null)
+	const id = useId()
+	const [value, setValue] = useState(defaultValue)
+	const [focused, setFocused] = useState(false)
 
-	useEffect(() => {
-		setIsValid(inputRef.current?.validity.valid == undefined ? 
-			true : inputRef.current?.validity.valid)
-	}, [value])
+	const defineInputClassNames = () => {
+		let classNames = `${className} app-input`
+
+		if (value.length !== 0) {
+			classNames += " app-input_active"
+		}
+
+		if (focused) {
+			classNames += " app-input_focused"
+		}
+
+		if (error) {
+			classNames += " app-input_error"
+		}
+
+		if (!label) {
+			classNames += " app-input_no-label"
+		}
+
+		return classNames
+	}
+
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setValue(e.target.value)
+		onChange && onChange(e)
+	}
 
 	return (
-		<div className={`input ${className || ""} ${isValid ? "" : "input_invalid"}`}>
-			<div className={`input__inner ${label ? "" : "input__inner_border"}`}>
-				{leadingContent && <div className="input__content_leading">
-					{leadingContent}
-				</div>}
-				<input 
-					min={min}
-					max={max}
-					ref={inputRef}
-					type={type}
-					value={value} 
-					required={required}
-					onChange={e => {
-						setValue(e.target.value)
-						onChange(e)
-					}} 
-					placeholder={placeholder} 
-					className="input__field" />
-				{label && <fieldset className="input__fieldset">
-					<legend className="input__legend">
-						<span>{label}</span>
+		<div className={defineInputClassNames()} style={style}>
+			<div className="app-input__inner">
+				<label className="app-input__label" htmlFor={id}>{label}</label>
+				<div className="app-input__wrapper">
+					<div className="app-input__content">
+						{startAdornment}
+					</div>
+					<input 
+						autoFocus={focus}
+						onFocus={() => setFocused(true)}
+						onBlur={() => setFocused(false)}
+						placeholder={placeholder}
+						onChange={handleChange}
+						value={outerValue || value}
+						className="app-input__field" 
+						type={type} 
+						id={id}
+					/>
+					<div className="app-input__content">
+						{endAdornment}
+					</div>
+				</div>
+				<fieldset className="app-input__fieldset">
+					<legend className="app-input__legend">
+						&#8203;{label}
 					</legend>
-				</fieldset>}
-				{trailingContent && <div className="input__content_trailing">
-					{trailingContent}
-				</div>}
+				</fieldset>
 			</div>
-			{helperText && <div className="input__helper-text">{helperText}</div>}
+			<div className="app-input__helper-text">
+				{helperText}
+			</div>
 		</div>
 	)
 }

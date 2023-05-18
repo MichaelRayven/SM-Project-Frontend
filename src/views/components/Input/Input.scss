@@ -1,86 +1,173 @@
 @use "@/styles/util" as u;
 
-.input {
+@keyframes label-shrink {
+  to {
+    top: u.rem(-8);
+    transform: translateY(0);
+
+    font-size: u.rem(16);
+    visibility: hidden;
+  }
+}
+
+@keyframes increase-width {
+  99% {
+    max-width: 100%;
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+    visibility: visible;
+    max-width: 100%;
+    padding-inline: u.rem(2);
+  }
+}
+
+.app-input {
+  $parent: #{&};
+
+  min-width: 25ch;
+  display: inline-flex;
+  flex-direction: column;
+
   &__inner {
     position: relative;
-    display: flex;
-    align-items: center;
     
-    &_border {
-      border: u.rem(2) solid rgb(var(--color-border));
-      border-radius: u.rem(8);
-      overflow: hidden;
-    }
+  }
+
+  &__wrapper {
+    display: flex;
+    overflow: hidden;
+    border-radius: u.rem(8);
+    padding-inline: u.rem(2);
   }
 
   &__field {
-    width: 100%;
-    height: u.rem(48);
+    flex: 1 1 auto;
 
-    border: none;
-    outline: none;
-    border-radius: u.rem(8);
+    padding: u.rem(16) u.rem(14);
+
     background: rgb(var(--color-neutural));
     color: rgb(var(--color-text));
+    
+    outline: none;
+    border: none;
 
-    padding: u.rem(12);
     @include u.body2-text;
+  }
 
-    &::placeholder {
-      color: rgb(var(--color-text-secondary));
-    }
+  &__label {
+    position: absolute;
+
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: u.rem(16);
+
+    color: rgb(var(--color-text-secondary));
+
+    @include u.body2-text;
+    font-size: u.rem(20);
   }
 
   &__fieldset {
+    min-width: 0;
     position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: calc(100% + u.rem(8));
+
+    inset: u.rem(-8) 0 0;
 
     border-radius: u.rem(8);
     border: u.rem(2) solid rgb(var(--color-border));
 
     pointer-events: none;
+    transition: border .1s ease-in-out;
   }
 
-  &__legend, &__helper-text {
-    @include u.body2-text;
-    margin-left: u.rem(10); // .input__field padding - border width
-    padding-inline: u.rem(2);
-    line-height: 100%;
+  &__legend {
+    visibility: hidden;
+    opacity: 0;
 
-    color: rgb(var(--color-border-darker));
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    user-select: none;
+
+    max-width: u.rem(0.01);
+    width: auto;
+
+    margin-left: u.rem(12);
+
+    color: rgb(var(--color-text-secondary));
+
+    @include u.body2-text;
     font-size: u.rem(16);
   }
 
   &__helper-text {
-    margin-top: u.rem(4);
-    margin-left: u.rem(12);
+    margin-left: u.rem(16);
+
+    color: rgb(var(--color-text-secondary));
+
+    @include u.body2-text;
+    font-size: u.rem(16);
+
+    &:not(:empty) {
+      margin-top: u.rem(8);
+    }
   }
 
-  &__content_leading {
-    margin-left: u.rem(12);
-    height: 100%;
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  &__content_trailing {
-    margin-right: u.rem(12);
-    height: 100%;
+  &_no-label {
+    #{$parent}__legend {
+      padding: 0 !important;
+    }
   }
 
-  &_invalid {
-    .input__inner_border {
-      border: u.rem(3) solid rgb(var(--color-error-lighter));
+  &_focused {
+    #{$parent}__fieldset {
+      border-width: u.rem(3);
+      border-color: rgb(var(--color-accent));
     }
 
-    .input__fieldset {
-      border: u.rem(3) solid rgb(var(--color-error-lighter));
+    #{$parent}__label {
+      animation: label-shrink .15s ease-out forwards 1 !important;
     }
 
-    .input__legend, .input__helper-text {
+    #{$parent}__legend {
+      animation: increase-width .15s ease-out forwards 1;
+      color: rgb(var(--color-accent));
+    }
+  }
+
+  &_active {
+    #{$parent}__label {
+      animation: label-shrink .15s ease-out forwards 1 !important;
+    }
+
+    #{$parent}__legend {
+      animation: increase-width .15s ease-out forwards 1;
+    }
+  }
+
+  &_error {
+    #{$parent}__fieldset {
+      border-color: rgb(var(--color-error));
+    }
+
+    #{$parent}__legend {
       color: rgb(var(--color-error));
-      font-weight: 500;
     }
-  }
+
+    #{$parent}__label {
+      color: rgb(var(--color-error));
+    }
+
+    #{$parent}__helper-text {
+      color: rgb(var(--color-error));
+    }
+  }  
 }
