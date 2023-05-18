@@ -10,6 +10,7 @@ type Props = {
 export const IconButton = ({icon, style, className, onClick}: Props) => {
 	return (
 		<button 
+			type="button"
 			className={`icon-button ${className || ""}`}
 			style={style}
 			onClick={onClick}

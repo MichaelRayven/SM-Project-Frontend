@@ -10,11 +10,11 @@
     transition: background .2s ease-out;
 
     &:hover {
-      background: rgb(var(--color-neutural-dark));
+      background: rgba(var(--color-text), 0.05);
     }
 
     &:active {
-      background: rgb(var(--color-neutural-darker));
+      background: rgba(var(--color-text), 0.1);
     }
   }
 }
