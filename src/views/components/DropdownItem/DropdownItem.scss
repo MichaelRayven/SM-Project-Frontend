@@ -1,0 +1,30 @@
+@use "@/styles/util" as u;
+
+
+.dropdown__item {
+  width: 100%;
+  padding: u.rem(8) u.rem(12);
+  cursor: default;
+  user-select: none;
+
+  transition: background .2s ease-out;
+
+  &_interactive {
+    cursor: pointer;
+
+    &:hover {
+      background: rgba(var(--color-text), 0.05);
+    }
+  
+    &:active {
+      background: rgba(var(--color-text), 0.1);
+    }
+  }
+
+  &_disabled {
+    &, &:hover, &:active, :focus {
+      cursor: default;
+      background: rgba(var(--color-text), 0.1);
+    }
+  }
+}
