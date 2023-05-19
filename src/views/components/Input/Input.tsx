@@ -1,23 +1,28 @@
-import { useId, useState } from "react"
+import { forwardRef, useId, useState } from "react"
+import { ChangeHandler } from "react-hook-form"
 import "./Input.scss"
 
 type Props = {
   className?: string
   style?: React.CSSProperties
+	error?: boolean
+	focus?: boolean
+	required?: boolean
   defaultValue?: string
 	placeholder?: string
 	helperText?: string
-	label?: string
-	type?: string
   endAdornment?: React.ReactNode
   startAdornment?: React.ReactNode
-	error?: boolean
-	focus?: boolean
+	label?: string
+	type?: string
+	name?: string
 	value?: string | number
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+	onBlur?: ChangeHandler
+	onFocus?: ChangeHandler
 }
 
-export const Input = ({
+export const Input = forwardRef(function Input({
 	className, 
 	style,
 	label,
@@ -29,17 +34,22 @@ export const Input = ({
 	helperText,
 	error,
 	focus,
-	value: outerValue,
-	onChange
-}: Props) => {
+	value,
+	name,
+	required,
+	onFocus,
+	onBlur,
+	onChange,
+	...inputProps
+}: Props, ref: React.ForwardedRef<HTMLInputElement>) {
 	const id = useId()
-	const [value, setValue] = useState(defaultValue)
 	const [focused, setFocused] = useState(false)
+	const [active, setActive] = useState(false)
 
 	const defineInputClassNames = () => {
 		let classNames = `${className} app-input`
 
-		if (value.length !== 0) {
+		if (active) {
 			classNames += " app-input_active"
 		}
 
@@ -58,9 +68,19 @@ export const Input = ({
 		return classNames
 	}
 
+	const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+		onFocus && onFocus(e)
+		setFocused(true)
+	}
+
+	const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+		onBlur && onBlur(e)
+		setFocused(false)
+	}
+
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setValue(e.target.value)
 		onChange && onChange(e)
+		setActive(e.target.value.length !== 0)
 	}
 
 	return (
@@ -72,15 +92,20 @@ export const Input = ({
 						{startAdornment}
 					</div>
 					<input 
-						autoFocus={focus}
-						onFocus={() => setFocused(true)}
-						onBlur={() => setFocused(false)}
-						placeholder={placeholder}
-						onChange={handleChange}
-						value={outerValue || value}
 						className="app-input__field" 
+						autoFocus={focus}
+						required={required}
+						defaultValue={defaultValue}
+						onFocus={handleFocus}
+						onBlur={handleBlur}
+						onChange={handleChange}
+						placeholder={placeholder}
+						value={value}
 						type={type} 
+						name={name}
+						ref={ref}
 						id={id}
+						{...inputProps}
 					/>
 					<div className="app-input__content">
 						{endAdornment}
@@ -97,4 +122,4 @@ export const Input = ({
 			</div>
 		</div>
 	)
-}
+})

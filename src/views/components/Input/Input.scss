@@ -28,8 +28,9 @@
   $parent: #{&};
 
   min-width: 25ch;
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
+  padding: 0;
 
   &__inner {
     position: relative;
@@ -41,6 +42,7 @@
     overflow: hidden;
     border-radius: u.rem(8);
     padding-inline: u.rem(2);
+    background: rgb(var(--color-neutural));
   }
 
   &__field {
@@ -48,7 +50,7 @@
 
     padding: u.rem(16) u.rem(14);
 
-    background: rgb(var(--color-neutural));
+    background: none;
     color: rgb(var(--color-text));
     
     outline: none;
@@ -103,7 +105,8 @@
   }
 
   &__helper-text {
-    margin-left: u.rem(16);
+    max-width: 30ch;
+    margin-inline: u.rem(16);
 
     color: rgb(var(--color-text-secondary));
 
