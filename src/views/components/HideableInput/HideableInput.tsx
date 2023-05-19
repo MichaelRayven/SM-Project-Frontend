@@ -1,25 +1,30 @@
-import { useState } from "react"
+import { forwardRef, useState } from "react"
 import Input from "@/views/components/Input"
 import IconButton from "@/views/components/IconButton"
 import "./HideableInput.scss"
+import { ChangeHandler } from "react-hook-form"
 
 type Props = {
   className?: string
   style?: React.CSSProperties
+	error?: boolean
+	focus?: boolean
+	required?: boolean
   defaultValue?: string
 	placeholder?: string
 	helperText?: string
-	label?: string
   startAdornment?: React.ReactNode
-	error?: boolean
-	focus?: boolean
+	label?: string
+	name?: string
 	value?: string | number
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+	onBlur?: ChangeHandler
+	onFocus?: ChangeHandler
 	showIcon?: string
 	hideIcon?: string
 }
 
-export const HideableInput = ({
+export const HideableInput = forwardRef(function HideableInput({
 	className, 
 	style,
 	label,
@@ -30,10 +35,15 @@ export const HideableInput = ({
 	error,
 	focus,
 	value,
+	name,
+	required,
+	onFocus,
+	onBlur,
 	onChange,
 	showIcon = "visibility",
-	hideIcon = "visibility_off"
-}: Props) => {
+	hideIcon = "visibility_off",
+	...inputProps
+}: Props, ref: React.ForwardedRef<HTMLInputElement>) {
 	const [isHidden, setHidden] = useState(true)
 
 	const renderIcon = () => {
@@ -56,6 +66,7 @@ export const HideableInput = ({
 		<Input 
 			className={className}
 			style={style}
+			ref={ref}
 			label={label}
 			placeholder={placeholder}
 			defaultValue={defaultValue}
@@ -66,6 +77,12 @@ export const HideableInput = ({
 			error={error}
 			focus={focus}
 			onChange={onChange}
-			type={isHidden ? "password" : "text"}/>
+			type={isHidden ? "password" : "text"}
+			required={required}
+			name={name}
+			onFocus={onFocus}
+			onBlur={onBlur}
+			{...inputProps}
+		/>
 	)
-}
+})
