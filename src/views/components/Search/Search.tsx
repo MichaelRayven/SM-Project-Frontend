@@ -4,6 +4,9 @@ import { fetchAutocompleteResultsByTitle } from "@/services/search/slice"
 import IconButton from "@/views/components/IconButton"
 import ProgressCircle from "@/views/components/Spinner"
 import "./Search.scss"
+import Dropdown from "../Dropdown"
+import DropdownItem from "../DropdownItem"
+import Input from "../Input"
 
 type Props = {
 	className?: string
@@ -22,38 +25,65 @@ export const Search = ({ className }: Props) => {
 			promise.abort()
 		}
 	}, [text])
-	
+
+	const renderDropdown = () => {
+		switch (autocompleteState) {
+		case "pending":
+			return (
+				<DropdownItem interactive={false} >
+					<ProgressCircle className="search__progress"/>
+				</DropdownItem>
+			)
+		case "failed":
+			return (
+				<DropdownItem interactive={false} >
+					<p className="search__no-result">Something went wrong.</p>
+				</DropdownItem>
+			)
+		case "succeeded":
+			if (autocompleteResults.length > 0) {
+				return (
+					autocompleteResults.map((item, ind) => 
+						<DropdownItem key={ind}>
+							<a className="search__suggestion" href="">{item}</a>
+						</DropdownItem>
+					)
+				)
+			} else {
+				return (
+					<DropdownItem interactive={false} >
+						<p className="search__no-result">No Results</p>
+					</DropdownItem>
+				)
+			}
+		}
+	}
 
 	return (
 		<div className={`search ${className || ""}`}>
-			<input
-				className="search__input"
-				type="text"
-				placeholder="Search..."
-				onChange={e => setText(e.target.value)}
-				value={text}
-			/>
-			<IconButton 
-				className="search__button_reset"
-				icon="close"
-				style={{visibility: text.length == 0 ? "hidden" : "visible"}}
-				onClick={() => setText("")}
-			></IconButton>
-			<IconButton icon="search" className="search__button"></IconButton>
-
-			<ul 
-				className="search__dropdown"
-				style={{visibility: text.length !== 0 ? "visible" : "hidden"}}
-			>
-				{ autocompleteState == "pending" ?
-					<ProgressCircle className="search__progress"/> :
-					autocompleteResults.length == 0 ?
-						<p className="search__no-result">No Results</p> :
-						autocompleteResults.map((item, ind) => 
-							<li key={ind}><a className="search__suggestion" href="">{item}</a></li>
-						)
+			<Dropdown
+				open={text.length > 0}
+				content={
+					<Input 
+						className="search__input"
+						type="text"
+						placeholder="Search..."
+						onChange={e => setText(e.target.value)}
+						value={text}
+						endAdornment={<>
+							<IconButton 
+								className="search__button_reset"
+								icon="close"
+								style={{visibility: text.length == 0 ? "hidden" : "visible"}}
+								onClick={() => setText("")}
+							/>
+							<IconButton icon="search" className="search__button" />
+						</>}
+					/>
 				}
-			</ul>
+			>
+				{ renderDropdown() }
+			</Dropdown>
 		</div>
 	)
 }

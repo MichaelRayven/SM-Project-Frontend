@@ -1,27 +1,6 @@
 @use "@/styles/util" as u;
 
 .search {
-  position: relative;
-  display: flex;
-  border-radius: u.rem(8);
-  background: rgb(var(--color-background));
-  
-  &__input {
-    @include u.body2-text;
-    padding-inline-start: u.rem(12);
-
-    background: none;
-    outline: none;
-    border: none;
-
-    color: rgb(var(--color-text));
-    flex: 1 0 auto;
-
-    &::placeholder {
-      color: rgb(var(--color-text-secondary));
-    }
-  }
-
   &__button  {
     border-left: u.rem(1) solid rgb(var(--color-border));
     color: rgb(var(--color-accent));
@@ -31,40 +10,8 @@
     }
   }
 
-  &__dropdown {
-    position: absolute;
-    margin-top: u.rem(8);
-    width: 100%;
-    top: 100%;
-
-    background: rgb(var(--color-neutural));
-    border-radius: u.rem(8);
-    border: u.rem(1) solid rgb(var(--color-border));
-    padding-block: u.rem(12);
-  }
-
   &__suggestion {
-    display: block;
     @include u.body2-text;
-    padding-block: u.rem(8);
-    padding-inline: u.rem(12);
-    transition: background .2s ease-out;
-
-    &:hover {
-      background: rgb(var(--color-neutural-dark));
-    }
-
-    &:active {
-      background: rgb(var(--color-neutural-darker));
-    }
-  }
-
-  &__no-result {
-    display: block;
-    @include u.body2-text;
-    padding-block: u.rem(8);
-    padding-inline: u.rem(12);
-    cursor: default;
   }
 
   &__progress {
