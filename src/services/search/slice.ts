@@ -1,8 +1,5 @@
+import { sleep } from "@/utility/utils"
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-
-const sleep = (ms: number) => {
-	return new Promise(resolve => setTimeout(resolve, ms))
-}
 
 export const fetchAutocompleteResultsByTitle = createAsyncThunk(
 	"autocomplete/fetchByTitle",
