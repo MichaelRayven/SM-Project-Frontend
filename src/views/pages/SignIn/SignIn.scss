@@ -1,0 +1,65 @@
+@use "@/styles/util" as u;
+
+.highlight {
+  &_inversion {
+    width: min-content;
+    background: rgb(var(--color-text));
+    color: rgb(var(--color-neutural));
+    padding: u.rem(4) u.rem(16);
+    border-radius: u.rem(999);
+  }
+}
+
+.signin {
+  max-width: u.rem(750);
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  row-gap: u.rem(16);
+  margin-top: u.rem(96);
+
+  @include u.breakpoint-down(medium) {
+    margin-top: u.rem(20);
+    width: auto;
+  }
+
+  &__text {
+    font-size: u.rem(22);
+
+    &_secondary {
+      font-size: u.rem(18);
+      font-weight: 400;
+      color: rgb(var(--color-text-secondary));
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: u.rem(16);
+    margin: u.rem(16) auto;
+
+    &_top {
+      width: min-content;
+    }
+
+    &_bottom {
+      margin-top: u.rem(24);
+      text-align: center;
+    }
+  }
+
+  &__link {
+    color: rgb(var(--color-accent)) !important;
+
+    &:hover {
+      color: rgb(var(--color-accent-dark)) !important;
+    }
+
+    &:active {
+      color: rgb(var(--color-accent-darker)) !important;
+    }
+  }
+}
