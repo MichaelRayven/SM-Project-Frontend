@@ -1,0 +1,7 @@
+@use "@/styles/util" as u;
+
+.feed {
+  display: flex;
+  flex-direction: column;
+  row-gap: u.rem(32);
+}
