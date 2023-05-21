@@ -11,12 +11,4 @@
   @include u.breakpoint-down(medium) {
     display: block;
   }
-
-  &__content > * {
-    margin-bottom: u.rem(32);
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
 }
