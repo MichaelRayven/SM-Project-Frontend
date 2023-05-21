@@ -2,13 +2,12 @@ import { forwardRef, useId, useState } from "react"
 import { ChangeHandler } from "react-hook-form"
 import "./Input.scss"
 
-type Props = {
+interface CommonProps {
   className?: string
   style?: React.CSSProperties
 	error?: boolean
 	focus?: boolean
 	required?: boolean
-  defaultValue?: string
 	placeholder?: string
 	helperText?: string
   endAdornment?: React.ReactNode
@@ -17,11 +16,22 @@ type Props = {
 	label?: string
 	type?: string
 	name?: string
-	value?: string | number
-	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 	onBlur?: ChangeHandler
 	onFocus?: ChangeHandler
 }
+
+interface ControlledProps extends CommonProps {
+	value?: string | number
+	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+}
+
+
+interface UncontrolledProps extends CommonProps {
+	defaultValue?: string
+}
+
+type Props = ControlledProps | UncontrolledProps
+
 
 export const Input = forwardRef(function Input({
 	className, 
@@ -29,7 +39,7 @@ export const Input = forwardRef(function Input({
 	label,
 	placeholder,
 	type = "text",
-	defaultValue = "",
+	defaultValue,
 	startAdornment,
 	endAdornment,
 	helperText,
