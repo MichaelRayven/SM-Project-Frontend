@@ -67,6 +67,7 @@ export const Search = ({ className }: Props) => {
 					<Input 
 						className="search__input"
 						type="text"
+						variant="borderless"
 						placeholder="Search..."
 						onChange={e => setText(e.target.value)}
 						value={text}

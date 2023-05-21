@@ -1,6 +1,11 @@
 @use "@/styles/util" as u;
 
 .search {
+  &__input {
+    border-radius: u.rem(8);
+    background: rgb(var(--color-background));
+  }
+
   &__button  {
     border-left: u.rem(1) solid rgb(var(--color-border));
     color: rgb(var(--color-accent));
