@@ -34,7 +34,6 @@
 
   &__inner {
     position: relative;
-    
   }
 
   &__wrapper {
@@ -42,7 +41,6 @@
     overflow: hidden;
     border-radius: u.rem(8);
     padding-inline: u.rem(2);
-    background: rgb(var(--color-neutural));
   }
 
   &__field {
@@ -173,4 +171,10 @@
       color: rgb(var(--color-error));
     }
   }  
+
+  &_borderless {
+    #{$parent}__fieldset {
+      border: none;
+    }
+  }
 }

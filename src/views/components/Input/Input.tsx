@@ -13,6 +13,7 @@ type Props = {
 	helperText?: string
   endAdornment?: React.ReactNode
   startAdornment?: React.ReactNode
+	variant?: "borderless" | "default"
 	label?: string
 	type?: string
 	name?: string
@@ -40,6 +41,7 @@ export const Input = forwardRef(function Input({
 	onFocus,
 	onBlur,
 	onChange,
+	variant = "default",
 	...inputProps
 }: Props, ref: React.ForwardedRef<HTMLInputElement>) {
 	const id = useId()
@@ -63,6 +65,10 @@ export const Input = forwardRef(function Input({
 
 		if (!label) {
 			classNames += " app-input_no-label"
+		}
+
+		if (variant === "borderless") {
+			classNames += " app-input_borderless"
 		}
 
 		return classNames
