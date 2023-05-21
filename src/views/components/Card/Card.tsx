@@ -22,7 +22,7 @@ export const Card = ({
 
 	const computeShadow = () => {
 		const elevationInRem = elevation / 16
-		return `${elevationInRem / 4}rem ${elevationInRem / 4}rem ${elevationInRem / 2}rem ${elevationInRem / 4}rem rgba(0, 0, 0, 0.2)`
+		return `${elevationInRem / 4}rem ${elevationInRem / 4}rem ${elevationInRem / 2}rem ${elevationInRem / 4}rem rgba(0, 0, 0, 0.1)`
 	}
 
 	return (
@@ -36,9 +36,7 @@ export const Card = ({
 				...style
 			}}
 		>
-			<div className="card__inner">
-				{children}
-			</div>
+			{ children }
 		</div>
 	)
 }
