@@ -1,0 +1,6 @@
+@use "@/styles/util" as u;
+
+.auth-methods {
+  display: flex;
+  column-gap: u.rem(12);
+}
