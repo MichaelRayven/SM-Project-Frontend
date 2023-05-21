@@ -1,0 +1,21 @@
+@use "@/styles/util" as u;
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  row-gap: u.rem(16);
+  width: 100%;
+
+  &__error {
+    @include u.body2-text;
+    padding: u.rem(20) u.rem(16);
+    background: rgba(var(--color-error), 0.15);
+    border-radius: u.rem(8);
+    color: rgb(var(--color-error));
+  }
+
+  &__submit {
+    padding-inline: u.rem(32);
+    align-self: center;
+  }
+}
